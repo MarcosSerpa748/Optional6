@@ -1,15 +1,26 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner sc = new Scanner(System.in);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        List<Usuario> primeiraLista = List.of(
+                new Usuario(1,"Marcos"),
+                new Usuario(2,"Débora")
+        );
+        List<Usuario> segundaLista = List.of(
+                new Usuario(3,"Carlor"),
+                new Usuario(4,"Letícia")
+        );
+
+        System.out.println("Digite o id do usuário que você está buscando:");
+        Integer id = sc.nextInt();
+
+        Optional<Usuario> usuarioDesejado = MetodosEstaticos.vericarPrimeiraLista(primeiraLista,id)
+                .or(() -> MetodosEstaticos.verificarSegundaLista(segundaLista,id));
+
+        System.out.println(usuarioDesejado);
     }
 }
